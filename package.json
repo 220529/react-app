@@ -21,7 +21,8 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "prepare": "husky"
+    "prepare": "husky",
+    "a": "eslint"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +52,8 @@
     "prettier": "3.2.5"
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "**/*.{js,jsx,ts,tsx,html,css,json}": [
+      "prettier --write --ignore-unknown"
+    ]
   }
 }
