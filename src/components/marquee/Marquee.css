@@ -1,0 +1,12 @@
+.marquee-container {
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.marquee-clone {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  white-space: nowrap;
+}

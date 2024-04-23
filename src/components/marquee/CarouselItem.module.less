@@ -1,0 +1,25 @@
+// CarouselItem.module.less
+.container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel {
+  display: inline-block;
+  white-space: nowrap;
+  position: relative;
+  transition: transform 0.5s ease-in-out;
+
+  &.moving {
+    animation: moveToLeft 8s linear infinite;
+  }
+
+  @keyframes moveToLeft {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+}

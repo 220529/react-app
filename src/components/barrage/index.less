@@ -1,0 +1,78 @@
+.barrage {
+  position: relative;
+
+  &-item {
+    width: 100%;
+    height: 119px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  img {
+    width: 100%;
+    height: 119px;
+  }
+
+  &-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* 宽度 大于容器的两倍即可 */
+    width: 200%;
+    display: flex;
+  }
+
+  &-top {
+    animation-duration: 15s;
+    /* 动画持续时间 */
+    animation-name: move;
+    /* 动画名称 */
+    animation-iteration-count: infinite;
+    /* 动画无限循环 */
+    animation-timing-function: linear;
+    /* 动画速度曲线为线性 */
+  }
+
+  &-bottom {
+    animation-delay: 2s;
+    /* 动画延时 */
+    animation-duration: 15s;
+    /* 动画持续时间 */
+    animation-name: move;
+    /* 动画名称 */
+    animation-iteration-count: infinite;
+    /* 动画无限循环 */
+    animation-timing-function: linear;
+    /* 动画速度曲线为线性 */
+  }
+
+  &-left {
+    animation-name: moveX;
+    animation-duration: 2.5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    /* 动画只执行一次 */
+  }
+
+  @keyframes move {
+    /* 原理 left值的变化 移动一个容器的宽度 */
+    0% {
+      left: 0;
+    }
+
+    100% {
+      left: -100%;
+    }
+  }
+
+  @keyframes moveX {
+    /* 原理 left值的变化 移动一个容器的宽度 */
+    0% {
+      transform: translateX(10%);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
