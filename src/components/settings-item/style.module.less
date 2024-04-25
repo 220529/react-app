@@ -1,0 +1,15 @@
+.field {
+  .item {
+    display: flex;
+    flex-direction: row;
+    .lable {
+      width: 80px;
+    }
+    .content {
+      flex: 1;
+    }
+    &:not(:first-child) {
+      margin-top: 5px;
+    }
+  }
+}
