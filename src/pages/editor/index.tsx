@@ -5,8 +5,7 @@ import Header from "@/components/header";
 import Sidebar from "@/components/sidebar";
 import Property from "@/components/property";
 import Footer from "@/components/footer";
-import Component from "@/components/component";
-import EditorWrapper from "@/components/editor-wrapper";
+import Editor from "@/components/editor-main";
 
 import style from "./style.module.less";
 
@@ -20,15 +19,7 @@ const App: React.FC = () => {
         <div className={style.middle}>
           <div className={style.editor}>
             <p>main</p>
-            <div className={style.main}>
-              {editor.components?.map(item => {
-                return (
-                  <EditorWrapper key={item.id} property={item}>
-                    <Component tag={item.name} property={item} />
-                  </EditorWrapper>
-                );
-              })}
-            </div>
+            <Editor page={editor} />
           </div>
         </div>
         <Property />
