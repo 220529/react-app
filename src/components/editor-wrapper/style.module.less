@@ -1,10 +1,46 @@
 .wrapper {
   user-select: none; // 用户无法选中元素内的文本内容
   box-sizing: content-box;
+  > * {
+    width: 100% !important;
+    height: 100% !important;
+    position: static !important;
+  }
   &.active {
     border: 0.5px green solid;
+    .resize {
+      display: block;
+    }
   }
-  * {
-    position: static !important;
+  .resize {
+    display: none;
+    > div {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid #1890ff;
+      position: absolute;
+    }
+    .topLeft {
+      left: -5px;
+      top: -5px;
+      cursor: nwse-resize;
+    }
+    .topRight {
+      right: -5px;
+      top: -5px;
+      cursor: nesw-resize;
+    }
+    .bottomLeft {
+      left: -5px;
+      bottom: -5px;
+      cursor: nesw-resize;
+    }
+    .bottomRight {
+      right: -5px;
+      bottom: -5px;
+      cursor: nwse-resize;
+    }
   }
 }
