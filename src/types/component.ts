@@ -47,8 +47,8 @@ export const defaultCommonComponentProps: CommonComponentProps = {
   boxShadow: "0 0 0 #000000",
   opacity: "1",
   // position and x,y
-  position: "relative",
-  //   position: "absolute",
+  // position: "relative",
+  position: "absolute",
   left: "0",
   top: "0",
   right: "0",

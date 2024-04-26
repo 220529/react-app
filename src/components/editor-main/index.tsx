@@ -7,7 +7,7 @@ import style from "./style.module.less";
 export default React.memo((props: any) => {
   const { page } = props;
   return (
-    <div className={style.main}>
+    <div className={style.main} id="editor-main">
       {page.components?.map((item: ComponentProps) => {
         return (
           <EditorWrapper key={item.id} property={item}>

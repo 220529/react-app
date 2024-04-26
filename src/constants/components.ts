@@ -13,13 +13,13 @@ const textComponents = [
     tag: "p",
     width: "100px",
   },
-  {
-    text: "链接内容",
-    color: "#1890ff",
-    textDecoration: "underline",
-    tag: "p",
-    width: "100px",
-  },
+  // {
+  //   text: "链接内容",
+  //   color: "#1890ff",
+  //   textDecoration: "underline",
+  //   tag: "p",
+  //   width: "100px",
+  // },
   // {
   //   text: "按钮内容",
   //   color: "#ffffff",

@@ -1,2 +1,10 @@
 .wrapper {
+  user-select: none; // 用户无法选中元素内的文本内容
+  box-sizing: content-box;
+  &.active {
+    border: 0.5px green solid;
+  }
+  * {
+    position: static !important;
+  }
 }

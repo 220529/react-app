@@ -25,7 +25,7 @@ const initialState: EditorState = {
       layerName: "图层1",
       props: {
         ...defaultTextComponentProps,
-        text: "hello",
+        text: "111",
         fontSize: "20px",
         color: "#000000",
         lineHeight: "1",
@@ -52,7 +52,7 @@ export const editorSlice = createSlice({
     },
     updateComponent: (state, action) => {
       const { payload } = action;
-      const target = state.components.find(item => item.id === payload.id);
+      const target = state.components.find(item => item.id === payload.id || state.currentId);
       if (target && payload.property) {
         Object.assign(target.props, payload.property);
       }

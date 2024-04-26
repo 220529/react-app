@@ -32,7 +32,6 @@ export default React.memo((props: any) => {
               [eventName]: e => {
                 dispatch(
                   updateComponent({
-                    id: editor.currentId,
                     property: {
                       [key]: convertOnChange ? convertOnChange(e) : e,
                     },
