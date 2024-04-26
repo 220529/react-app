@@ -12,6 +12,7 @@
     "@types/react": "^18.2.73",
     "@types/react-dom": "^18.2.23",
     "antd": "^5.16.0",
+    "axios": "^1.6.8",
     "classnames": "^2.5.1",
     "lodash-es": "^4.17.21",
     "react": "^18.2.0",
@@ -24,8 +25,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
+    "start": "cross-env NODE_ENV=development craco start",
+    "build": "cross-env NODE_ENV=production craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
     "prepare": "husky"
@@ -56,6 +57,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/uuid": "^9.0.8",
     "craco-less": "^3.0.1",
+    "cross-env": "^7.0.3",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "prettier": "3.2.5"
