@@ -23,7 +23,6 @@ const App: React.FC = () => {
   const [form] = Form.useForm();
 
   const onFinish: FormProps<FieldType>["onFinish"] = async values => {
-    console.log("Success:", values);
     const res = await signup(values);
     console.log("signup", res);
   };
@@ -33,7 +32,7 @@ const App: React.FC = () => {
   };
 
   const onFill = () => {
-    form.setFieldsValue({ username: "Hello world!", password: "male123" });
+    form.setFieldsValue({ username: "Hello", password: "qqqqqq" });
   };
 
   return (

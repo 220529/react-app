@@ -7,13 +7,17 @@ module.exports = {
       // 使用 @ 表示 src 文件所在路径
       "@": path.resolve(__dirname, "src"),
     },
-    devServer: {
-      proxy: {
-        // 这里配置你要代理的目标地址
-        "/api": {
-          target: "http://47.93.17.251:9005", // 你要代理的地址
-          // changeOrigin: true,
-          // pathRewrite: { "^/api": "/api" }, // 可选的，重写路径，如果接口路径有变化，需要进行重写
+  },
+  devServer: {
+    // 在开发环境下，使用代理
+    port: 4000,
+    proxy: {
+      // 选项写法
+      "/api": {
+        target: "http://47.93.17.251:9005", // 目标地址
+        changeOrigin: true, // 开启代理，在本地创建一个虚拟服务器，然后发送请求的数据，会同时会收到请求的数据，这样服务端和服务端进行数据的交互就不会有跨域问题
+        pathRewrite: {
+          "^/api": "/api", // 路径重写，移除路径中的/api
         },
       },
     },
