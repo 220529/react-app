@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button, Form, Input, Space } from "antd";
 import { useUserStore } from "@/hooks/store";
 import { userLogin, userSignup } from "@/store/userSlice";
@@ -25,9 +26,10 @@ const App: React.FC = () => {
   const { dispatch, user } = useUserStore();
   const { loading, access_token } = user;
 
+  const navigate = useNavigate();
   useEffect(() => {
     if (access_token) {
-      console.log("login.access_token: ", access_token);
+      navigate("/");
     }
   }, [access_token]);
 

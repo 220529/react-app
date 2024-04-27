@@ -37,7 +37,7 @@ const App: React.FC<ComponentWrapperProps> = ({ property, children }) => {
       // 当前元素的各个父级没有定位，那么就是相对于body了
       return {
         left: e.clientX - parent.offsetLeft - moveRef.current.x,
-        top: e.clientY - parent.offsetTop - moveRef.current.y,
+        top: e.clientY - parent.offsetTop - moveRef.current.y + window.scrollY,
       };
     }
   };
