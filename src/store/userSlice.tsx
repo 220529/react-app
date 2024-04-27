@@ -1,20 +1,34 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchById, UserProps } from "@/api/user";
+import { UserProps } from "@/api/user";
+import { login, signup } from "@/api/auth";
 
 // First, create the thunk
-export const fetchUserById = createAsyncThunk("user/fetchByIdStatus", async (userId: number) => {
-  const response = await fetchById(userId);
-  return response.content;
+export const userLogin = createAsyncThunk("user/userLoginStatus", async (params: any) => {
+  const res: any = await login(params);
+  if (res?.state === 1) {
+    return res.content;
+  }
+  return null;
+});
+
+export const userSignup = createAsyncThunk("user/userSignupStatus", async (params: any) => {
+  const res: any = await signup(params);
+  if (res?.state === 1) {
+    return res.content;
+  }
+  return null;
 });
 
 interface UserState {
   userInfo: UserProps;
   loading: boolean;
+  access_token: string;
 }
 
 const initialState: UserState = {
   userInfo: {},
   loading: false,
+  access_token: "",
 };
 
 // Then, handle actions in your reducers:
@@ -25,18 +39,28 @@ export const userSlice = createSlice({
     // standard reducer logic, with auto-generated action types per reducer
   },
   extraReducers: builder => {
-    // Add reducers for additional action types here, and handle loading state as needed
-    builder.addCase(fetchUserById.pending, (state, action) => {
-      // Add user to the state array
+    builder.addCase(userLogin.pending, state => {
       state.loading = true;
     });
-    builder.addCase(fetchUserById.fulfilled, (state, action) => {
-      // Add user to the state array
+    builder.addCase(userLogin.fulfilled, (state, action) => {
       state.loading = false;
-      state.userInfo = action.payload;
+      if (action.payload) {
+        state.access_token = action.payload.access_token;
+      }
     });
-    builder.addCase(fetchUserById.rejected, (state, action) => {
-      // Add user to the state array
+    builder.addCase(userLogin.rejected, state => {
+      state.loading = false;
+    });
+    builder.addCase(userSignup.pending, state => {
+      state.loading = true;
+    });
+    builder.addCase(userSignup.fulfilled, (state, action) => {
+      state.loading = false;
+      if (action.payload) {
+        state.access_token = action.payload.access_token;
+      }
+    });
+    builder.addCase(userSignup.rejected, state => {
       state.loading = false;
     });
   },

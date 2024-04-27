@@ -10,7 +10,7 @@ module.exports = {
   },
   devServer: {
     // 在开发环境下，使用代理
-    port: 4000,
+    port: 4002,
     proxy: {
       // 选项写法
       "/api": {

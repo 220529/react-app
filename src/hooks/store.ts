@@ -14,3 +14,9 @@ export const useEditorStore = () => {
   }, [editor]);
   return { editor, property, dispatch };
 };
+
+export const useUserStore = () => {
+  const dispatch = useAppDispatch();
+  const user = useAppSelector(state => state.user);
+  return { user, dispatch };
+};
