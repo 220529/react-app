@@ -1,7 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { notification } from "antd";
-import { useSelector } from "react-redux";
-import store, { RootState } from "@/store";
+import store from "@/store";
 
 const config: AxiosRequestConfig = {
   baseURL: process.env.NODE_ENV === "development" ? "/api" : "http://47.93.17.251:9005/api",

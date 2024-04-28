@@ -100,13 +100,20 @@ const App: React.FC<ComponentWrapperProps> = ({ property, children }) => {
     const parent = ref.current?.parentNode as HTMLElement;
     if (parent) {
       const { clientX, clientY } = e;
+      // 往上缩放： 鼠标 - 父级的上偏移 - 滚动条
+      const topOffset = clientY - parent.offsetTop + window.scrollY;
+      const leftOffset = clientX - parent.offsetLeft;
       switch (resizeRef.current.direction) {
         case "top-left":
-          console.log("top-left...");
-          break;
+          return {
+            top: topOffset,
+            left: leftOffset,
+            width: resizeRef.current.right - clientX,
+            height: resizeRef.current.bottom - clientY,
+          };
         case "top-right":
           return {
-            top: clientY - parent.offsetTop,
+            top: topOffset,
             width: clientX - resizeRef.current.left,
             height: resizeRef.current.bottom - clientY,
           };
@@ -116,8 +123,11 @@ const App: React.FC<ComponentWrapperProps> = ({ property, children }) => {
             height: clientY - resizeRef.current.top,
           };
         case "bottom-left":
-          console.log("bottom-left...");
-          break;
+          return {
+            left: leftOffset,
+            width: resizeRef.current.right - clientX,
+            height: clientY - resizeRef.current.top,
+          };
         default:
           break;
       }
@@ -125,22 +135,39 @@ const App: React.FC<ComponentWrapperProps> = ({ property, children }) => {
   };
   const onResizeMove = (e: any) => {
     const caculate = caculateResize(e);
-    // console.log("caculate", caculate);
     if (ref.current && caculate) {
       ref.current.style.width = caculate.width + "px";
       ref.current.style.height = caculate.height + "px";
+      if (caculate.top) {
+        ref.current.style.top = caculate.top + "px";
+      }
+      if (caculate.left) {
+        ref.current.style.left = caculate.left + "px";
+      }
     }
   };
 
   const onResizeUp = (e: any) => {
     const caculate = caculateResize(e);
     if (caculate) {
+      const updateProperty: {
+        width: string;
+        height: string;
+        top?: string;
+        left?: string;
+      } = {
+        width: caculate.width + "px",
+        height: caculate.height + "px",
+      };
+      if (caculate.top) {
+        updateProperty.top = caculate.top + "px";
+      }
+      if (caculate.left) {
+        updateProperty.left = caculate.left + "px";
+      }
       dispatch(
         updateComponent({
-          property: {
-            width: caculate.width + "px",
-            height: caculate.height + "px",
-          },
+          property: updateProperty,
         })
       );
     }

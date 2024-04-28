@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "antd";
+import { Button, message } from "antd";
 import { BackwardOutlined, ForwardOutlined } from "@ant-design/icons";
 import { useNavigate, useParams } from "react-router-dom";
 import { useUserStore, useEditorStore } from "@/hooks/store";
@@ -17,6 +17,7 @@ export default React.memo(() => {
       desc: "desc...",
     });
     if (res._id) {
+      message.success("创建成功");
       navigate(`/editor/${res._id}`);
     }
   };
@@ -28,6 +29,9 @@ export default React.memo(() => {
         components: editor.components,
       },
     });
+    if (res) {
+      message.success("保存成功");
+    }
     console.log("save.res", res);
   };
   const prev = () => {
