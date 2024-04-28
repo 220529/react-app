@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { uuid } from "@/utils";
 import { ComponentProps } from "@/types/component";
-import { fetchById, UserProps } from "@/api/user";
+// import { fetchById, UserProps } from "@/api/user";
 import { defaultTextComponentProps, UpdateComponentProps } from "@/types/component";
 
 // First, create the thunk
 export const fetchUserById = createAsyncThunk("user/fetchByIdStatus", async (userId: number) => {
-  const response = await fetchById(userId);
-  return response.content;
+  // const response = await fetchById(userId);
+  // return response.content;
 });
 
 interface EditorState {

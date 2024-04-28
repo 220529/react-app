@@ -1,8 +1,10 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { notification } from "antd";
+import { useSelector } from "react-redux";
+import store, { RootState } from "@/store";
 
 const config: AxiosRequestConfig = {
-  baseURL: process.env.NODE_ENV === "development" ? "" : "http://47.93.17.251:9005",
+  baseURL: process.env.NODE_ENV === "development" ? "/api" : "http://47.93.17.251:9005/api",
   timeout: 5000,
   withCredentials: true,
 };
@@ -20,6 +22,11 @@ class Axios {
     this.service.interceptors.request.use(
       config => {
         // 在发送请求之前做些什么，比如添加公共请求头
+        const { user } = store.getState();
+        // 检查是否有 token，如果有，则将其添加到请求头中
+        if (user.access_token) {
+          config.headers["Authorization"] = `Bearer ${user.access_token}`;
+        }
         return config;
       },
       error => {
@@ -47,14 +54,14 @@ class Axios {
   private handleResponse(response: AxiosResponse) {
     if (response.status === 200) {
       // 如果响应正常，则返回数据部分
-      return Promise.resolve(response.data);
+      return Promise.resolve(response.data.data);
     } else {
       // 如果响应异常，则显示错误通知
       notification.error({
         message: "Error",
-        description: response.data.message || "未知错误",
+        description: response.data.data?.message || "未知错误",
       });
-      return Promise.resolve(response.data);
+      return Promise.resolve(response.data.data);
     }
   }
 

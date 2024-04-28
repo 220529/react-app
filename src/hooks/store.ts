@@ -18,5 +18,5 @@ export const useEditorStore = () => {
 export const useUserStore = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.user);
-  return { user, dispatch };
+  return { user, userInfo: user.userInfo, dispatch };
 };

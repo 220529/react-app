@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useUserStore } from "@/hooks/store";
 import style from "./style.module.less";
 
 export default React.memo(() => {
-  return <div className={style.header}>header</div>;
+  const { userInfo } = useUserStore();
+  return <div className={style.header}>header {userInfo.username}</div>;
 });
