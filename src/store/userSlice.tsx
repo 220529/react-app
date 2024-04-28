@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { login, signup, info, UserProps } from "@/api/user";
+import { login, signup, info, UserProps, LoginProps } from "@/api/user";
 
 // First, create the thunk
-export const userLogin = createAsyncThunk("user/userLoginStatus", async (params: any) => {
+export const userLogin = createAsyncThunk("user/userLoginStatus", async (params: LoginProps) => {
   return await login(params);
 });
 
-export const userSignup = createAsyncThunk("user/userSignupStatus", async (params: any) => {
+export const userSignup = createAsyncThunk("user/userSignupStatus", async (params: LoginProps) => {
   return await signup(params);
 });
 

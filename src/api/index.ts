@@ -65,11 +65,11 @@ class Axios {
     }
   }
 
-  get(url: string, params?: object, headers?: object) {
+  get<T>(url: string, params?: object, headers?: object): Promise<T> {
     return this.service.get(url, { params, headers });
   }
 
-  post(url: string, data?: object, headers?: object) {
+  post<T>(url: string, data?: object, headers?: object): Promise<T> {
     return this.service.post(url, data, { headers });
   }
 }
