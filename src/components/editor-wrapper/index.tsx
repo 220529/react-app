@@ -125,7 +125,7 @@ const App: React.FC<ComponentWrapperProps> = ({ property, children }) => {
   };
   const onResizeMove = (e: any) => {
     const caculate = caculateResize(e);
-    console.log("caculate", caculate);
+    // console.log("caculate", caculate);
     if (ref.current && caculate) {
       ref.current.style.width = caculate.width + "px";
       ref.current.style.height = caculate.height + "px";
@@ -133,6 +133,17 @@ const App: React.FC<ComponentWrapperProps> = ({ property, children }) => {
   };
 
   const onResizeUp = (e: any) => {
+    const caculate = caculateResize(e);
+    if (caculate) {
+      dispatch(
+        updateComponent({
+          property: {
+            width: caculate.width + "px",
+            height: caculate.height + "px",
+          },
+        })
+      );
+    }
     // 在鼠标抬起时处理逻辑
     document.removeEventListener("mousemove", onResizeMove);
     setTimeout(() => {

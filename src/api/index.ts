@@ -52,7 +52,7 @@ class Axios {
   }
 
   private handleResponse(response: AxiosResponse) {
-    if (response.status === 200) {
+    if (response.data?.code === 200) {
       // 如果响应正常，则返回数据部分
       return Promise.resolve(response.data.data);
     } else {
@@ -71,6 +71,10 @@ class Axios {
 
   post<T>(url: string, data?: object, headers?: object): Promise<T> {
     return this.service.post(url, data, { headers });
+  }
+
+  put<T>(url: string, data?: object, headers?: object): Promise<T> {
+    return this.service.put(url, data, { headers });
   }
 }
 

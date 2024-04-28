@@ -1,21 +1,21 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { login, signup, info, UserProps, LoginProps } from "@/api/user";
+import * as user from "@/api/user";
 
 // First, create the thunk
-export const userLogin = createAsyncThunk("user/userLoginStatus", async (params: LoginProps) => {
-  return await login(params);
+export const userLogin = createAsyncThunk("user/login", async (params: user.LoginProps) => {
+  return await user.login(params);
 });
 
-export const userSignup = createAsyncThunk("user/userSignupStatus", async (params: LoginProps) => {
-  return await signup(params);
+export const userSignup = createAsyncThunk("user/signup", async (params: user.LoginProps) => {
+  return await user.signup(params);
 });
 
-export const fetchUserInfo = createAsyncThunk("user/userInfo", async () => {
-  return await info();
+export const userInfo = createAsyncThunk("user/info", async () => {
+  return await user.info();
 });
 
 interface UserState {
-  userInfo: UserProps;
+  userInfo: user.UserProps;
   loading: boolean;
   access_token: string;
 }
@@ -35,18 +35,14 @@ export const userSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addMatcher(
-      action => {
-        return ["user/userLoginStatus", "user/userSignupStatus", "user/userInfo"].some(type =>
-          action.type.includes(type)
-        );
-      },
+      action => action.type.includes("user/"),
       (state, action: any) => {
         if (action.meta.requestStatus === "pending") {
           state.loading = true;
         } else {
           state.loading = false;
           if (action.meta.requestStatus === "fulfilled" && action.payload) {
-            if (action.type.includes("user/userInfo")) {
+            if (action.type.includes("user/info")) {
               state.userInfo = action.payload;
             } else {
               state.access_token = action.payload.access_token;

@@ -1,5 +1,4 @@
 import React from "react";
-import { uuid } from "@/utils";
 import LText from "@/components/l-text";
 import { TextComponentProps } from "@/types/component";
 import { defaultTextComponents as templates } from "@/constants/components";
@@ -15,7 +14,6 @@ export default React.memo(() => {
   const addComponent = (template: TextComponentProps) => {
     dispatch(
       createComponent({
-        id: uuid(),
         name: "l-text",
         props: template,
       })
