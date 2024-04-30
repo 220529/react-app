@@ -1,10 +1,12 @@
-import Test from "@/components/test";
+// import Test from "@/components/test";
+import Antd from "@/components/antd";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Test />
+        {/* <Test /> */}
+        <Antd />
       </header>
     </div>
   );
