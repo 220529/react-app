@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Input, InputNumber, Switch, Radio, Select } from "antd";
+import { Input, InputNumber, Switch, Radio, Select, ColorPicker } from "antd";
 import LText from "../l-text";
 
 interface Props {
@@ -30,6 +30,8 @@ const Component: React.FC<Props> = ({ tag, property, children }) => {
       return <Radio.Group {...antdProperty} optionType="button" />;
     case "Select":
       return <Select {...antdProperty} style={{ width: 120 }} />;
+    case "ColorPicker":
+      return <ColorPicker {...antdProperty} />;
     default:
       return React.createElement(
         tag,

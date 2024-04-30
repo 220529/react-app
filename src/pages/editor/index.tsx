@@ -7,7 +7,7 @@ import Header from "@/components/header";
 import Sidebar from "@/components/sidebar";
 import Property from "@/components/property";
 import Footer from "@/components/footer";
-import Editor from "@/components/editor-main";
+import Main from "@/components/editor-main";
 
 import style from "./style.module.less";
 
@@ -25,7 +25,9 @@ const App: React.FC = () => {
         <div className={style.middle}>
           <div className={style.editor}>
             <p>main</p>
-            <Editor page={editor} />
+            <div className={style.warpper}>
+              <Main content={editor} />
+            </div>
           </div>
         </div>
         <Property />

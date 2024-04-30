@@ -92,7 +92,7 @@ export interface ComponentProps {
   id: string; // uuid v4 生成
   //   name: string;
   name: "l-text" | "l-image";
-  props: Partial<AllComponentProps>; // 元素属性
+  props: Record<string, any>; // 元素属性
   layerName: string;
 }
 

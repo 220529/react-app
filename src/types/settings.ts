@@ -1,4 +1,6 @@
+import React from "react";
 import { AllComponentProps } from "@/types/component";
+import type { ColorPickerProps, GetProp } from "antd";
 
 export interface GroupProps {
   text: string;
@@ -69,7 +71,21 @@ export type SettingFormsProps = {
 const pxNumberConverter = {
   component: "InputNumber",
   initializeOnLoad: (e: string) => parseFloat(e),
-  convertOnChange: (e: number) => (e ? `${e}px` : ""),
+  convertOnChange: (e: number | undefined) => {
+    if (typeof e === "number") {
+      return `${e}px`;
+    }
+    return "";
+  },
+};
+
+type Color = GetProp<ColorPickerProps, "value">;
+const colorConvert = (e: Color) => {
+  if (typeof e === "string") {
+    return e;
+  } else {
+    return e.toHexString();
+  }
 };
 
 // 所有属性，对应的编辑组件
@@ -77,7 +93,7 @@ export const settings: SettingFormsProps = {
   text: {
     text: "文本",
     component: "Input",
-    convertOnChange: (e: any) => e.target.value,
+    convertOnChange: (e: React.ChangeEvent<HTMLInputElement>) => e.target.value,
   },
   fontSize: {
     text: "字号",
@@ -119,13 +135,13 @@ export const settings: SettingFormsProps = {
   },
   color: {
     text: "字体颜色",
-    component: "input-color",
-    convertOnChange: (e: any) => e.target.value,
+    component: "ColorPicker",
+    convertOnChange: colorConvert,
   },
   backgroundColor: {
     text: "背景颜色",
-    component: "input-color",
-    convertOnChange: (e: any) => e.target.value,
+    component: "ColorPicker",
+    convertOnChange: colorConvert,
   },
   width: {
     text: "宽度",

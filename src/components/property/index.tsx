@@ -16,6 +16,11 @@ export default React.memo(() => {
       label: "图层设置",
       children: "Content of Tab Pane 2",
     },
+    {
+      key: "3",
+      label: "页面设置",
+      children: "Content of Tab Pane 3",
+    },
   ];
 
   const onChange = (key: string) => {

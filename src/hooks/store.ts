@@ -12,7 +12,7 @@ export const useEditorStore = () => {
   const property = useMemo(() => {
     return editor.components.find(item => item.id === editor.currentId);
   }, [editor]);
-  return { editor, property, dispatch };
+  return { editor, property, work: editor.work, dispatch };
 };
 
 export const useUserStore = () => {

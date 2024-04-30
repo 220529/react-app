@@ -3,7 +3,8 @@ import { notification } from "antd";
 import store from "@/store";
 
 const config: AxiosRequestConfig = {
-  baseURL: process.env.NODE_ENV === "development" ? "/api" : "http://47.93.17.251:9005/api",
+  baseURL:
+    process.env.NODE_ENV === "development" ? "/api" : `${process.env.REACT_APP_BASE_URL}/api`,
   timeout: 5000,
   withCredentials: true,
 };
