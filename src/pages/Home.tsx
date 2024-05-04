@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useUserStore } from "@/hooks/store";
 import { userInfo } from "@/store/userSlice";
-import Header from "@/components/header";
+// import Header from "@/components/header";
 
 const App: React.FC = () => {
   const { dispatch, user } = useUserStore();
@@ -12,10 +12,10 @@ const App: React.FC = () => {
   }, []);
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       <span>home</span>
     </div>
   );
 };
 
-export default App;
+export default React.memo(App);

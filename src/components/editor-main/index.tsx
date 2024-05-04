@@ -1,18 +1,35 @@
-import React from "react";
-import { ComponentProps } from "@/types/component";
+import React, { useMemo } from "react";
+import cx from "classnames";
+import { ComponentNodeProps } from "@/types/component";
 import Component from "@/components/component";
 import EditorWrapper from "@/components/editor-wrapper";
 import style from "./style.module.less";
 
-export default React.memo((props: any) => {
-  const { content } = props;
+export default React.memo((e: any) => {
+  const { content, isEditor } = e;
+  const { setting, components } = content;
+  const { props } = setting || {};
+  const { backgroundImage, backgroundRepeat, backgroundSize, backgroundColor } = props || {};
+  const classNames = cx({
+    [style.basic]: true,
+    [style.work]: !isEditor,
+    [style.editor]: isEditor,
+  });
+  const mainStyle = useMemo(() => {
+    return backgroundImage
+      ? { backgroundImage: `url(${backgroundImage})`, backgroundRepeat, backgroundSize }
+      : { backgroundColor };
+    return {};
+  }, [props]);
   return (
-    <div className={style.main} id="editor-main">
-      {content.components?.map((item: ComponentProps) => {
-        return (
+    <div className={classNames} id="editor-main" style={mainStyle}>
+      {components?.map((item: ComponentNodeProps) => {
+        return isEditor ? (
           <EditorWrapper key={item.id} property={item}>
             <Component tag={item.name} property={item} />
           </EditorWrapper>
+        ) : (
+          <Component tag={item.name} property={item} key={item.id} />
         );
       })}
     </div>

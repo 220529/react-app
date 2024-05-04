@@ -1,4 +1,4 @@
-import { defaultTextComponentProps } from "@/types/component";
+import { ImgNodeProps, defaultTextNodeProps, defaultImgNodeProps } from "@/types/component";
 
 const textComponents = [
   {
@@ -39,7 +39,12 @@ const textComponents = [
   },
 ];
 
-export const defaultTextComponents = textComponents.map(template => ({
-  ...defaultTextComponentProps,
+export const defaultTextComponent = textComponents.map(template => ({
+  ...defaultTextNodeProps,
   ...template,
 }));
+
+export const defaultImageComponent: ImgNodeProps = {
+  ...defaultImgNodeProps,
+  src: "",
+};

@@ -13,12 +13,12 @@ import storage from "redux-persist/lib/storage"; // 默认使用 localStorage
 
 import userReducer from "./userSlice";
 import counterReducer from "./counterSlice";
-import editorReducer from "./editorSlice";
+import workReducer from "./workSlice";
 
 const rootReducer = combineReducers({
   user: userReducer,
   counter: counterReducer,
-  editor: editorReducer,
+  work: workReducer,
 });
 
 // 定义持久化配置

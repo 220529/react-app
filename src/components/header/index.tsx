@@ -2,19 +2,28 @@ import React from "react";
 import { Button, message } from "antd";
 import { BackwardOutlined, ForwardOutlined } from "@ant-design/icons";
 import { useNavigate, useParams } from "react-router-dom";
-import { useUserStore, useEditorStore } from "@/hooks/store";
-import * as work from "@/api/work";
+import { useUserStore, useWorkStore } from "@/hooks/store";
+import * as api from "@/api/work";
 import style from "./style.module.less";
 
 export default React.memo(() => {
   const { userInfo } = useUserStore();
-  const { editor } = useEditorStore();
+  const { work } = useWorkStore();
   const navigate = useNavigate();
   const params = useParams();
   const create = async () => {
-    const res: any = await work.create({
+    const res: any = await api.create({
       title: "test",
       desc: "desc...",
+      content: {
+        components: [],
+        props: {
+          backgroundColor: "#ffffff",
+          backgroundImage: "",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        },
+      },
     });
     if (res._id) {
       message.success("创建成功");
@@ -22,17 +31,17 @@ export default React.memo(() => {
     }
   };
   const save = async () => {
-    const res = await work.update(params.id as string, {
-      title: editor.work.title,
-      desc: editor.work.desc,
+    const res = await api.update(params.id as string, {
+      title: work.setting.title,
+      desc: work.setting.desc,
       content: {
-        components: editor.components,
+        props: work.setting.props,
+        components: work.components,
       },
     });
     if (res) {
       message.success("保存成功");
     }
-    console.log("save.res", res);
   };
   const prev = () => {
     console.log("prev");

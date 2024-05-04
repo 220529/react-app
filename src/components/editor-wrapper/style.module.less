@@ -1,13 +1,14 @@
 .wrapper {
   user-select: none; // 用户无法选中元素内的文本内容
   box-sizing: content-box;
+  border: 0.5px transparent solid;
   > * {
     width: 100% !important;
     height: 100% !important;
     position: static !important;
   }
   &.active {
-    border: 0.5px green solid;
+    border-color: #00b38a;
     .resize {
       display: block;
     }

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { useEditorStore } from "@/hooks/store";
-import { fetchWork } from "@/store/editorSlice";
+import { useWorkStore } from "@/hooks/store";
+import { fetchWork } from "@/store/workSlice";
 import { useParams } from "react-router-dom";
 
 import Header from "@/components/header";
@@ -12,7 +12,7 @@ import Main from "@/components/editor-main";
 import style from "./style.module.less";
 
 const App: React.FC = () => {
-  const { editor, dispatch } = useEditorStore();
+  const { work, dispatch } = useWorkStore();
   const params = useParams();
   useEffect(() => {
     dispatch(fetchWork(params.id as string));
@@ -24,9 +24,8 @@ const App: React.FC = () => {
         <Sidebar />
         <div className={style.middle}>
           <div className={style.editor}>
-            <p>main</p>
             <div className={style.warpper}>
-              <Main content={editor} />
+              <Main content={work} isEditor />
             </div>
           </div>
         </div>

@@ -1,21 +1,21 @@
 import React, { MouseEvent, useRef, useMemo } from "react";
 import cx from "classnames";
 import { pick } from "lodash-es";
-import { useEditorStore } from "@/hooks/store";
-import { selectComponent, updateComponent } from "@/store/editorSlice";
-import { ComponentProps } from "@/types/component";
+import { useWorkStore } from "@/hooks/store";
+import { selectComponent, updateComponent } from "@/store/workSlice";
+import { ComponentNodeProps } from "@/types/component";
 import style from "./style.module.less";
 
 interface ComponentWrapperProps {
-  property: ComponentProps;
+  property: ComponentNodeProps;
   children?: React.ReactNode;
 }
 
 const App: React.FC<ComponentWrapperProps> = ({ property, children }) => {
   const { id } = property;
   const ref = useRef<HTMLDivElement>(null);
-  const { dispatch, editor } = useEditorStore();
-  const active = useMemo(() => editor.currentId === id, [editor.currentId, id]);
+  const { dispatch, work } = useWorkStore();
+  const active = useMemo(() => work.currentId === id, [work.currentId, id]);
   const select = () => {
     dispatch(selectComponent(property.id));
   };
@@ -57,10 +57,8 @@ const App: React.FC<ComponentWrapperProps> = ({ property, children }) => {
       if (caculate) {
         dispatch(
           updateComponent({
-            property: {
-              top: caculate.top + "px",
-              left: caculate.left + "px",
-            },
+            top: caculate.top + "px",
+            left: caculate.left + "px",
           })
         );
       }
@@ -165,11 +163,7 @@ const App: React.FC<ComponentWrapperProps> = ({ property, children }) => {
       if (caculate.left) {
         updateProperty.left = caculate.left + "px";
       }
-      dispatch(
-        updateComponent({
-          property: updateProperty,
-        })
-      );
+      dispatch(updateComponent(updateProperty));
     }
     // 在鼠标抬起时处理逻辑
     document.removeEventListener("mousemove", onResizeMove);

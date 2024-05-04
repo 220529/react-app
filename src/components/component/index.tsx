@@ -1,6 +1,8 @@
 import React, { ReactNode } from "react";
 import { Input, InputNumber, Switch, Radio, Select, ColorPicker } from "antd";
-import LText from "../l-text";
+import LText from "@/components/l-text";
+import LImage from "@/components/l-image";
+import Upload from "@/components/upload";
 
 interface Props {
   tag: string; // 标签名称
@@ -20,6 +22,10 @@ const Component: React.FC<Props> = ({ tag, property, children }) => {
   switch (tag) {
     case "l-text":
       return <LText property={property} />;
+    case "l-image":
+      return <LImage property={property} />;
+    case "l-upload":
+      return <Upload property={antdProperty} />;
     case "Input":
       return <Input {...antdProperty} />;
     case "InputNumber":

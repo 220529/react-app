@@ -6,13 +6,13 @@ import type { AppDispatch, RootState } from "@/store";
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 export const useAppSelector = useSelector.withTypes<RootState>();
 
-export const useEditorStore = () => {
+export const useWorkStore = () => {
   const dispatch = useAppDispatch();
-  const editor = useAppSelector(state => state.editor);
+  const work = useAppSelector(state => state.work);
   const property = useMemo(() => {
-    return editor.components.find(item => item.id === editor.currentId);
-  }, [editor]);
-  return { editor, property, work: editor.work, dispatch };
+    return work.components.find(item => item.id === work.currentId);
+  }, [work]);
+  return { work, property, dispatch };
 };
 
 export const useUserStore = () => {

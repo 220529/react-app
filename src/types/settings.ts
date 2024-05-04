@@ -1,5 +1,5 @@
 import React from "react";
-import { AllComponentProps } from "@/types/component";
+import { AllElementNodeProps } from "@/types/component";
 import type { ColorPickerProps, GetProp } from "antd";
 
 export interface GroupProps {
@@ -64,7 +64,7 @@ export interface SettingFormProps {
 }
 
 export type SettingFormsProps = {
-  [P in keyof AllComponentProps]?: SettingFormProps;
+  [P in keyof AllElementNodeProps]?: SettingFormProps;
 };
 
 // 像素值转换数字
@@ -142,6 +142,23 @@ export const settings: SettingFormsProps = {
     text: "背景颜色",
     component: "ColorPicker",
     convertOnChange: colorConvert,
+  },
+  backgroundImage: {
+    text: "背景图片",
+    component: "l-upload",
+  },
+  backgroundRepeat: {
+    text: "背景重复",
+    component: "Select",
+    options: [
+      { label: "不重复", value: "no-repeat" },
+      { label: "重复", value: "repeat" },
+    ],
+  },
+  backgroundSize: {
+    text: "背景尺寸",
+    component: "Select",
+    options: [{ label: "完全铺满", value: "100% 100%" }],
   },
   width: {
     text: "宽度",

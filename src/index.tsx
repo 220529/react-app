@@ -5,7 +5,7 @@ import { PersistGate } from "redux-persist/integration/react";
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import "./reset.css";
+import "@/styles/reset.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(

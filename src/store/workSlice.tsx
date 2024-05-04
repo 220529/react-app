@@ -1,31 +1,35 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { uuid } from "@/utils";
 import * as work from "@/api/work";
-import { ComponentProps } from "@/types/component";
+import { SettingProps, ComponentNodeProps } from "@/types/component";
 
 // First, create the thunk
 export const fetchWork = createAsyncThunk("fetch/work", async (id: string) => {
   return await work.fetch(id);
 });
 
-interface EditorState {
+interface WorkState {
+  setting: SettingProps;
   currentId: string;
-  components: ComponentProps[];
+  components: ComponentNodeProps[];
   history: [];
-  work: work.WorkProps;
-  workLoading: boolean;
+  loading: boolean;
 }
 
-const initialState: EditorState = {
+const initialState: WorkState = {
+  setting: {
+    title: "",
+    desc: "",
+    props: {},
+  },
   currentId: "",
   components: [],
   history: [],
-  work: {},
-  workLoading: false,
+  loading: false,
 };
 
 // Then, handle actions in your reducers:
-export const editorSlice = createSlice({
+export const workSlice = createSlice({
   name: "editor",
   initialState,
   reducers: {
@@ -39,12 +43,20 @@ export const editorSlice = createSlice({
     updateComponent: (state, action) => {
       const { payload } = action;
       const target = state.components.find(item => item.id === (payload.id || state.currentId));
-      if (target && payload.property) {
-        Object.assign(target.props, payload.property);
+      if (target) {
+        Object.assign(target.props, payload);
       }
     },
     selectComponent: (state, action) => {
       state.currentId = action.payload;
+    },
+    updateSetting: (state, action) => {
+      const { payload } = action;
+      if (payload.props) {
+        Object.assign(state.setting.props, payload.props);
+      } else {
+        Object.assign(state.setting, payload);
+      }
     },
   },
   extraReducers: builder => {
@@ -52,11 +64,13 @@ export const editorSlice = createSlice({
       action => action.type.includes("fetch/work"),
       (state, action: any) => {
         if (action.meta.requestStatus === "pending") {
-          state.workLoading = true;
+          state.loading = true;
         } else {
-          state.workLoading = false;
+          state.loading = false;
           if (action.meta.requestStatus === "fulfilled" && action.payload) {
-            state.work = action.payload;
+            state.setting.title = action.payload.title || "";
+            state.setting.desc = action.payload.desc || "";
+            state.setting.props = action.payload?.content?.props || {};
             state.components = action.payload?.content?.components || [];
           }
         }
@@ -65,6 +79,7 @@ export const editorSlice = createSlice({
   },
 });
 
-export const { createComponent, updateComponent, selectComponent } = editorSlice.actions;
+export const { createComponent, updateComponent, selectComponent, updateSetting } =
+  workSlice.actions;
 
-export default editorSlice.reducer;
+export default workSlice.reducer;
