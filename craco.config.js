@@ -1,5 +1,6 @@
 const path = require("path");
 const CracoLessPlugin = require("craco-less");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = {
   webpack: {
@@ -7,6 +8,7 @@ module.exports = {
       // 使用 @ 表示 src 文件所在路径
       "@": path.resolve(__dirname, "src"),
     },
+    // plugins: [new BundleAnalyzerPlugin()],
   },
   devServer: {
     // 在开发环境下，使用代理
