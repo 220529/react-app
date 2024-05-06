@@ -1,8 +1,8 @@
 import { useMemo } from "react";
-import { pick, reduce } from "lodash-es";
+import { pick } from "lodash-es";
 import { useWorkStore } from "@/hooks/store";
 import { TextNodeProps, ImgNodeProps } from "@/types/component";
-import { AllElementNodeProps, PageBackgroundProps } from "@/types/component";
+import { AllElementNodeProps, PageSettingProps } from "@/types/component";
 import { settings, FormItemProps } from "@/types/settings";
 
 type NodeProps = TextNodeProps | ImgNodeProps;
@@ -18,8 +18,8 @@ export const useNodeAttributes = <T extends NodeProps>(props: T, fieldsNames: (k
 };
 
 interface PropertyProps {
-  property: AllElementNodeProps | PageBackgroundProps; // 属性对象的类型声明
-  updateProperty: (e: Partial<AllElementNodeProps | PageBackgroundProps>) => any; // 更新属性的函数类型声明
+  property: AllElementNodeProps | PageSettingProps; // 属性对象的类型声明
+  updateProperty: (e: Partial<AllElementNodeProps | PageSettingProps>) => any; // 更新属性的函数类型声明
 }
 
 export const useNodeProperty = ({ property, updateProperty }: PropertyProps) => {

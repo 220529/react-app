@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, message } from "antd";
 import { BackwardOutlined, ForwardOutlined } from "@ant-design/icons";
 import { useNavigate, useParams } from "react-router-dom";
 import { useUserStore, useWorkStore } from "@/hooks/store";
+import { useUserInfo } from "@/hooks/login";
 import * as api from "@/api/work";
 import style from "./style.module.less";
 
@@ -12,7 +13,7 @@ export default React.memo(() => {
   const navigate = useNavigate();
   const params = useParams();
   const create = async () => {
-    const res: any = await api.create({
+    const res = await api.create({
       title: "test",
       desc: "desc...",
       content: {
@@ -25,9 +26,9 @@ export default React.memo(() => {
         },
       },
     });
-    if (res._id) {
+    if (res.state === 1) {
       message.success("创建成功");
-      navigate(`/editor/${res._id}`);
+      navigate(`/editor/${res.data._id}`);
     }
   };
   const save = async () => {
@@ -49,6 +50,10 @@ export default React.memo(() => {
   const next = () => {
     console.log("next");
   };
+  const { fetchUserInfo } = useUserInfo();
+  useEffect(() => {
+    fetchUserInfo();
+  }, []);
   return (
     <div className={style.header}>
       <div className={style.left}>header</div>

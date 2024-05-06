@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { notification } from "antd";
 import store from "@/store";
+import { ApiResponse } from "@/api/response";
 
 const config: AxiosRequestConfig = {
   baseURL:
@@ -52,28 +53,25 @@ class Axios {
   }
 
   private handleResponse(response: AxiosResponse) {
-    if (response.data?.code === 200) {
-      // 如果响应正常，则返回数据部分
-      return Promise.resolve(response.data.data);
-    } else {
+    if (response.data.code !== 200) {
       // 如果响应异常，则显示错误通知
       notification.error({
         message: "Error",
         description: response.data.data?.message || "未知错误",
       });
-      return Promise.resolve(response.data.data);
     }
+    return Promise.resolve(response.data);
   }
 
-  get<T>(url: string, params?: object, headers?: object): Promise<T> {
+  get<T>(url: string, params?: object, headers?: object): Promise<ApiResponse<T>> {
     return this.service.get(url, { params, headers });
   }
 
-  post<T>(url: string, data?: object, headers?: object): Promise<T> {
+  post<T>(url: string, data?: object, headers?: object): Promise<ApiResponse<T>> {
     return this.service.post(url, data, { headers });
   }
 
-  put<T>(url: string, data?: object, headers?: object): Promise<T> {
+  put<T>(url: string, data?: object, headers?: object): Promise<ApiResponse<T>> {
     return this.service.put(url, data, { headers });
   }
 }

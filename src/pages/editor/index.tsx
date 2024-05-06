@@ -1,21 +1,16 @@
 import React, { useEffect } from "react";
-import { useWorkStore } from "@/hooks/store";
-import { fetchWork } from "@/store/workSlice";
-import { useParams } from "react-router-dom";
-
 import Header from "@/components/header";
 import Sidebar from "@/components/sidebar";
 import Property from "@/components/property";
 import Footer from "@/components/footer";
 import Main from "@/components/editor-main";
-
+import { useWork } from "@/hooks/work";
 import style from "./style.module.less";
 
 const App: React.FC = () => {
-  const { work, dispatch } = useWorkStore();
-  const params = useParams();
+  const { work, fetchWork } = useWork();
   useEffect(() => {
-    dispatch(fetchWork(params.id as string));
+    fetchWork();
   }, []);
   return (
     <div className={style.container}>

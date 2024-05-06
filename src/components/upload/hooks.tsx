@@ -1,4 +1,4 @@
-import { useCallback, useRef, ChangeEventHandler, useEffect, useState } from "react";
+import { useCallback, useRef, ChangeEventHandler, useState } from "react";
 import * as api from "@/api/oss";
 import style from "./style.module.less";
 
@@ -16,7 +16,7 @@ export const useUpload = ({ uploadSuccess }: UploadProps) => {
       const formData = new FormData();
       formData.append(file.name, file);
       setLoading(true);
-      const res = await api.upload<api.OssResponse>(formData);
+      const res = await api.upload(formData);
       setLoading(false);
       uploadSuccess(res);
     }

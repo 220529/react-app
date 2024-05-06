@@ -1,16 +1,13 @@
 import React, { useEffect, useMemo } from "react";
 import { cloneDeep } from "lodash-es";
-import { useWorkStore } from "@/hooks/store";
-import { fetchWork } from "@/store/workSlice";
-import { useParams } from "react-router-dom";
+import { useWork } from "@/hooks/work";
 import Main from "@/components/editor-main";
 import { pxTovw } from "@/utils";
 
 const App: React.FC = () => {
-  const { work, dispatch } = useWorkStore();
-  const params = useParams();
+  const { work, fetchWork } = useWork();
   useEffect(() => {
-    dispatch(fetchWork(params.id as string));
+    fetchWork();
   }, []);
   const page = useMemo(() => {
     const copyWork = cloneDeep(work);

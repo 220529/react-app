@@ -1,12 +1,6 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { uuid } from "@/utils";
-import * as work from "@/api/work";
 import { SettingProps, ComponentNodeProps } from "@/types/component";
-
-// First, create the thunk
-export const fetchWork = createAsyncThunk("fetch/work", async (id: string) => {
-  return await work.fetch(id);
-});
 
 interface WorkState {
   setting: SettingProps;
@@ -58,28 +52,16 @@ export const workSlice = createSlice({
         Object.assign(state.setting, payload);
       }
     },
-  },
-  extraReducers: builder => {
-    builder.addMatcher(
-      action => action.type.includes("fetch/work"),
-      (state, action: any) => {
-        if (action.meta.requestStatus === "pending") {
-          state.loading = true;
-        } else {
-          state.loading = false;
-          if (action.meta.requestStatus === "fulfilled" && action.payload) {
-            state.setting.title = action.payload.title || "";
-            state.setting.desc = action.payload.desc || "";
-            state.setting.props = action.payload?.content?.props || {};
-            state.components = action.payload?.content?.components || [];
-          }
-        }
-      }
-    );
+    setWork: (state, action) => {
+      state.setting.title = action.payload.title || "";
+      state.setting.desc = action.payload.desc || "";
+      state.setting.props = action.payload?.content?.props || {};
+      state.components = action.payload?.content?.components || [];
+    },
   },
 });
 
-export const { createComponent, updateComponent, selectComponent, updateSetting } =
+export const { createComponent, updateComponent, selectComponent, updateSetting, setWork } =
   workSlice.actions;
 
 export default workSlice.reducer;

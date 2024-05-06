@@ -5,11 +5,9 @@ export interface ListData<T> {
   pageSize: number;
 }
 
-export interface ResponseProps<T = {}> {
+export interface ApiResponse<T> {
   data: T;
-  state: number;
-}
-export interface ResponseListProps<T> {
-  data: ListData<T>;
+  code: number;
+  message: string;
   state: number;
 }

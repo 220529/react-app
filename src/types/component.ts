@@ -119,7 +119,7 @@ export const textNodeStyleFields = Object.keys(defaultTextNodeProps).filter(
 // 图片节点的样式字段
 export const imgNodeStyleFields = Object.keys(defaultImgNodeProps).filter(field => field !== "src");
 
-export interface PageBackgroundProps {
+export interface PageSettingProps {
   backgroundColor?: string;
   backgroundImage?: string;
   backgroundRepeat?: string;
@@ -129,5 +129,5 @@ export interface PageBackgroundProps {
 export interface SettingProps {
   title: string;
   desc: string;
-  props: PageBackgroundProps;
+  props: PageSettingProps;
 }

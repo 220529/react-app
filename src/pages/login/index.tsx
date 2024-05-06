@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, Input, Space } from "antd";
 import { useUserStore } from "@/hooks/store";
-import { userLogin, userSignup } from "@/store/userSlice";
+import * as api from "@/api/user";
+import { setToken } from "@/store/userSlice";
 import style from "./style.module.less";
 
 type FieldType = {
@@ -23,26 +24,32 @@ const App: React.FC = () => {
   const [form] = Form.useForm();
   const values = Form.useWatch([], form);
 
-  const { dispatch, user } = useUserStore();
-  const { loading, access_token } = user;
-
+  const { dispatch } = useUserStore();
   const navigate = useNavigate();
-  useEffect(() => {
-    if (access_token) {
-      navigate("/");
-    }
-  }, [access_token]);
 
   const onReset = () => {
     form.resetFields();
   };
 
+  const [loading, setLoading] = useState<boolean>(false);
   const login = async () => {
-    dispatch(userLogin(values));
+    setLoading(true);
+    const res = await api.login(values);
+    if (res.state === 1) {
+      dispatch(setToken(res.data.access_token));
+      navigate("/");
+    }
+    setLoading(false);
   };
 
   const signup = async () => {
-    dispatch(userSignup(values));
+    setLoading(true);
+    const res = await api.signup(values);
+    if (res.state === 1) {
+      dispatch(setToken(res.data.access_token));
+      navigate("/");
+    }
+    setLoading(false);
   };
 
   return (

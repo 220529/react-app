@@ -1,28 +1,11 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import * as user from "@/api/user";
-
-// First, create the thunk
-export const userLogin = createAsyncThunk("user/login", async (params: user.LoginProps) => {
-  return await user.login(params);
-});
-
-export const userSignup = createAsyncThunk("user/signup", async (params: user.LoginProps) => {
-  return await user.signup(params);
-});
-
-export const userInfo = createAsyncThunk("user/info", async () => {
-  return await user.info();
-});
-
+import { createSlice } from "@reduxjs/toolkit";
 interface UserState {
-  userInfo: user.UserProps;
-  loading: boolean;
+  userInfo: any;
   access_token: string;
 }
 
 const initialState: UserState = {
   userInfo: {},
-  loading: false,
   access_token: "",
 };
 
@@ -32,26 +15,15 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     // standard reducer logic, with auto-generated action types per reducer
-  },
-  extraReducers: builder => {
-    builder.addMatcher(
-      action => action.type.includes("user/"),
-      (state, action: any) => {
-        if (action.meta.requestStatus === "pending") {
-          state.loading = true;
-        } else {
-          state.loading = false;
-          if (action.meta.requestStatus === "fulfilled" && action.payload) {
-            if (action.type.includes("user/info")) {
-              state.userInfo = action.payload;
-            } else {
-              state.access_token = action.payload.access_token;
-            }
-          }
-        }
-      }
-    );
+    setToken: (state, action) => {
+      state.access_token = action.payload;
+    },
+    setUserInfo: (state, action) => {
+      state.userInfo = action.payload;
+    },
   },
 });
+
+export const { setToken, setUserInfo } = userSlice.actions;
 
 export default userSlice.reducer;

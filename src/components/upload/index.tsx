@@ -21,7 +21,7 @@ const App = ({ multiple = false, property }: Props) => {
       setFiles([...files, file]);
     }
   };
-  const { Uploader, upload, loading } = useUpload({ uploadSuccess });
+  const { Uploader, upload } = useUpload({ uploadSuccess });
   const clear = () => {
     setFiles([]);
     property?.onChange("");

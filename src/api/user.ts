@@ -1,26 +1,29 @@
 import api from "@/api";
-// import { ResponseProps } from "@/api/response";
 
-export interface UserProps {
+interface UserResponse {
   username?: string;
   email?: string;
   nickName?: string;
   portrait?: string;
 }
 
-export interface LoginProps {
+interface LoginRequest {
   username: string;
   password: string;
 }
 
-export const login = (params: LoginProps) => {
-  return api.post("/auth/login", params);
+export interface LoginResponse {
+  access_token: string;
+}
+
+export const login = (params: LoginRequest) => {
+  return api.post<LoginResponse>("/auth/login", params);
 };
 
-export const signup = (params: LoginProps) => {
-  return api.post("/auth/signup", params);
+export const signup = (params: LoginRequest) => {
+  return api.post<LoginResponse>("/auth/signup", params);
 };
 
 export const info = () => {
-  return api.get("/user/info");
+  return api.get<UserResponse>("/user/info");
 };

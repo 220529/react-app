@@ -1,22 +1,33 @@
 import api from "@/api";
+import { PageSettingProps, ComponentNodeProps } from "@/types/component";
 
-export interface WorkProps {
-  title?: string;
-  desc?: string;
+interface WorkRequest {
+  title: string;
+  desc: string;
   coverImg?: string;
-  content?: Record<string, any>;
+  content: Record<string, any>;
   isTemplate?: boolean;
   isPublished?: boolean;
 }
 
-export const create = (params: WorkProps) => {
-  return api.post("/work", params);
+interface WorkResponse {
+  _id: string;
+  title: string;
+  desc: string;
+  content: {
+    components: ComponentNodeProps[];
+    props: PageSettingProps;
+  };
+}
+
+export const create = (params: WorkRequest) => {
+  return api.post<WorkResponse>("/work", params);
 };
 
-export const update = (id: string, params: WorkProps) => {
+export const update = (id: string, params: WorkRequest) => {
   return api.put(`/work/${id}`, params);
 };
 
 export const fetch = (id: string) => {
-  return api.get(`/work/${id}`);
+  return api.get<WorkResponse>(`/work/${id}`);
 };
