@@ -28,7 +28,7 @@ export const useUpload = ({ uploadSuccess }: UploadProps) => {
 
   const Uploader = useCallback(() => {
     return <input onChange={onChange} className={style.input} ref={ref} type="file" />;
-  }, [onChange]);
+  }, []);
 
   return {
     loading,

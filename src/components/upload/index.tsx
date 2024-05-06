@@ -32,7 +32,7 @@ const App = ({ multiple = false, property }: Props) => {
         {files?.map(file => {
           return (
             <div className={cx(style.item, style.image)} key={file.url}>
-              <img src={file.url} />
+              <img src={file.url} alt="" />
               <div className={style.delete}>
                 <Button danger type="link" className={style.btn} onClick={clear}>
                   删除
