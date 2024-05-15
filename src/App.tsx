@@ -1,8 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { sa } from "@ns-library/monitor";
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
+  useEffect(() => {
+    sa.beforeUpload = () => {
+      console.log("beforeUpload...");
+    };
+    sa.afterUpload = () => {
+      console.log("afterUpload...");
+    };
+    sa.platTrack("click", { pid: "iiii", aid: "发来的；fks" });
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
