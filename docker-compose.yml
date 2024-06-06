@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  nginx:
+    image: nginx:latest
+    restart: always
+    ports:
+      - 9000:80
+    volumes:
+      - ./build:/var/www/html/
+      - ./conf.d:/etc/nginx/conf.d
+    networks:
+      - lego-front-network
+networks:
+  lego-front-network:
