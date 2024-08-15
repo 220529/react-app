@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
+import Prettier from "./components/Prettier";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      Learn React
+      React App
+      <Prettier />
     </div>
   );
 }
