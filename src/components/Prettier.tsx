@@ -4,11 +4,11 @@ import React from "react";
 const MyComponent: React.FC = () => {
   // 2. 行尾分号
   const handleClick = (): void => {
-    console.log("Button clicked"); // 行尾分号
+    console.log("Button clicked."); // 行尾分号
   };
 
   // 3. 单引号 vs 双引号
-  const greeting: string = "Hello, world!";
+  const greeting: string = "Hello, world";
 
   // 4. 箭头函数括号
   const add = (a: number, b: number): number => a + b;
