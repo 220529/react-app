@@ -47,6 +47,8 @@
     "prettier": "3.3.3"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,vue,json,css,less,scss,sass}": "prettier --write --ignore-unknown"
+    "src/*.{js,jsx,ts,tsx,html,css,json}": [
+      "prettier --write --ignore-unknown"
+    ]
   }
 }
