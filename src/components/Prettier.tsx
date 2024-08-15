@@ -6,7 +6,7 @@ const MyComponent: React.FC = () => {
   // a = 10;
   // 2. 行尾分号
   const handleClick = (): void => {
-    console.log("Button clicked."); // 行尾分号
+    console.log("Button clicked"); // 行尾分号
     console.log("A", a);
   };
 
