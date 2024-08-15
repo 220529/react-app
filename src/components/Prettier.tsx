@@ -2,9 +2,11 @@ import React from "react";
 
 // 1. 代码缩进
 const MyComponent: React.FC = () => {
+  const a = 1;
   // 2. 行尾分号
   const handleClick = (): void => {
     console.log("Button clicked."); // 行尾分号
+    a = 2;
   };
 
   // 3. 单引号 vs 双引号
