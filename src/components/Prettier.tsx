@@ -11,7 +11,7 @@ const MyComponent: React.FC = () => {
   const greeting: string = "Hello, world"
 
   // 4. 箭头函数括号
-  const add = (a: number, b: number): number => a + b;
+  const add = (a: number, b: number): number => a + b
 
   // 5. 对象属性的引号
   const person: { name: string; age: number } = {
