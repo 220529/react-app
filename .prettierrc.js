@@ -12,7 +12,7 @@ module.exports = {
   // 换行方式
   proseWrap: "preserve",
   // 分号
-  semi: true,
+  semi: false,
   // 使用单引号
   singleQuote: false,
   // 缩进
@@ -21,4 +21,4 @@ module.exports = {
   useTabs: false,
   // 尾随逗号
   trailingComma: "es5",
-};
+}
