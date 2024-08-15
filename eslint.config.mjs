@@ -14,7 +14,6 @@ export default [
       "@typescript-eslint/no-unused-vars": "warn",
       "no-undef": "error",
       "no-const-assign": "error",
-      semi: ["error", "always"], // ESLint 要求添加分号
     },
   },
   {
