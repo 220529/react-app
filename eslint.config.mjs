@@ -28,6 +28,7 @@ export default [
       ".prettierrc.js",
       "commitlint.config.js",
       "craco.config.js",
+      "postcss.config.js",
       "node_modules/*", // ignore its content
     ],
   },

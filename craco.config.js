@@ -9,4 +9,14 @@ module.exports = {
       "@": path.join(__dirname, "src"),
     },
   },
+  style: {
+    postcss: {
+      mode: "extends",
+      loaderOptions: {
+        postcssOptions: {
+          config: path.resolve(__dirname, "./postcss.config.js"),
+        },
+      },
+    },
+  },
 };
