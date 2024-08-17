@@ -1,10 +1,12 @@
+import Xhr from "@/components/xhr";
 import Test from "@/components/test";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Test />
+        <Xhr />
+        {/* <Test /> */}
       </header>
     </div>
   );
