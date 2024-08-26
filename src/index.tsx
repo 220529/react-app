@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import ErrorBoundary from "@/components/ErrorBoundary";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./reset.css";
@@ -7,7 +8,9 @@ import "./reset.css";
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   // <React.StrictMode>
-  <App />
+  <ErrorBoundary>
+    <App />
+  </ErrorBoundary>
   // </React.StrictMode>
 );
 
