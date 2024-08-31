@@ -61,11 +61,12 @@ function App() {
   const scroll = throttle(e => {
     const scrollTop = e.target.scrollTop;
     const start = Math.floor(scrollTop / itemheight);
+    const translateY = scrollTop - (scrollTop % itemheight) - buffers.start * itemheight;
     setVisible({
       ...visible,
       start,
       end: start + visible.count,
-      translateY: scrollTop - (scrollTop % itemheight) - buffers.start * itemheight,
+      translateY: translateY > 0 ? translateY : 0,
     });
   }, 50);
   const handler = e => {
