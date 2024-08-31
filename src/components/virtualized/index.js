@@ -14,6 +14,11 @@ for (let id = 0; id < length; id++) {
   });
 }
 
+const defaultBuffers = {
+  start: 1,
+  end: 1.5,
+};
+
 function App() {
   const ref = useRef();
   const sliderRef = useRef();
@@ -38,14 +43,20 @@ function App() {
     });
   }, []);
 
-  const renderList = useMemo(() => {
-    return items.slice(visible.start, visible.end);
+  const buffers = useMemo(() => {
+    return {
+      start: Math.min(visible.start, defaultBuffers.start * visible.count),
+      end: Math.min(items.length - visible.end, defaultBuffers.end * visible.count),
+    };
   }, [visible]);
 
-  const translateSize = useMemo(
-    () => `translate3d(0,${visible.translateY}px,0)`,
-    [visible.translateY]
-  );
+  const renderList = useMemo(() => {
+    return items.slice(visible.start - buffers.start, visible.end + buffers.end);
+  }, [visible, buffers]);
+
+  const translateSize = useMemo(() => {
+    return `translate3d(0,${visible.translateY}px,0)`;
+  }, [visible.translateY]);
 
   const scroll = throttle(e => {
     const scrollTop = e.target.scrollTop;
@@ -54,7 +65,7 @@ function App() {
       ...visible,
       start,
       end: start + visible.count,
-      translateY: scrollTop - (scrollTop % itemheight),
+      translateY: scrollTop - (scrollTop % itemheight) - buffers.start * itemheight,
     });
   }, 50);
   const handler = e => {
