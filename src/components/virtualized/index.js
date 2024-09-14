@@ -10,13 +10,14 @@ const items = [];
 for (let id = 0; id < length; id++) {
   items.push({
     id,
-    value: faker.lorem.sentences(), // 长文本
+    value: id,
+    // value: faker.lorem.sentences(), // 长文本
   });
 }
 
 const defaultBuffers = {
   start: 1,
-  end: 1.5,
+  end: 1,
 };
 
 function App() {
