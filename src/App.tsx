@@ -5,11 +5,18 @@ import Error from "@/components/error";
 import SetState from "@/components/setState";
 import UseEffect from "@/components/use-effect";
 // import CancelToken from "@/components/CancelToken";
-// import VirtualizedList from "@/components/virtualized";
+import VirtualizedList from "@/components/virtualized";
+import VirtualizedList2 from "@/components/virtualized2";
+import VirtualizedList3 from "@/components/virtualized3";
+import VirtualizedList4 from "@/components/virtualList4";
 // import VirtualizedList from "@/components/virtualized-list";
 import DumiApp from "@/components/dumi-app";
 import Counter from "@/components/counter";
 import Xss from "@/components/xss";
+import Widget from "@/components/widget";
+import Event from "@/components/Event";
+import RandomTextComponent from "@/components/RandomTextComponent";
+import ScrollThrottleComponent from "@/components/ScrollThrottleComponent";
 
 function App() {
   useEffect(() => {
@@ -23,10 +30,17 @@ function App() {
       {/* <SetState /> */}
       {/* <UseEffect /> */}
       {/* <CancelToken /> */}
-      {/* <VirtualizedList /> */}
+      <VirtualizedList />
+      {/* <VirtualizedList2 /> */}
+      {/* <VirtualizedList3 /> */}
+      {/* <VirtualizedList4 /> */}
       {/* <DumiApp /> */}
       {/* <Counter /> */}
-      <Xss />
+      {/* <Xss /> */}
+      {/* <Widget /> */}
+      {/* <Event /> */}
+      {/* <RandomTextComponent /> */}
+      {/* <ScrollThrottleComponent /> */}
     </div>
   );
 }

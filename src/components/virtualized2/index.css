@@ -1,0 +1,21 @@
+.container {
+  width: 300px;
+  height: 500px;
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
+  position: relative;
+  background-color: aqua;
+}
+.content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: yellow;
+}
+.content-item {
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  text-align: center;
+  color: #333;
+}
