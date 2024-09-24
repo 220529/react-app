@@ -17,7 +17,7 @@ for (let id = 0; id < length; id++) {
 
 const offsetBuffers = {
   top: 1,
-  bottom: 1.5,
+  bottom: 1,
 };
 
 let screenSize = 0; // 可视区能放多少个
