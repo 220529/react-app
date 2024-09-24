@@ -1,20 +1,9 @@
 import React, { useEffect, useState, useRef, useMemo } from "react";
-import faker from "faker";
 import { throttle } from "lodash-es";
+import { items } from "@/constants/virtualized";
 import style from "./style.module.less";
 
-const length = 10000 * 10;
 const itemheight = 50;
-
-const items = [];
-for (let id = 0; id < length; id++) {
-  items.push({
-    id,
-    value: id,
-    value: faker.lorem.sentences(), // 长文本
-  });
-}
-
 const offsetBuffers = {
   top: 1,
   bottom: 1,
@@ -75,27 +64,22 @@ function App() {
   }, []);
 
   return (
-    <div>
-      {JSON.stringify(visible)}
-      translateY: {translateY}
-      {/* <h1>虚拟化列表示例</h1> */}
-      <div className={style.container} ref={ref}>
-        <div className={style.slider} style={{ height: itemheight * items.length + "px" }} />
-        <ul className={style.content} style={{ transform: `translate3d(0, ${translateY}px ,0)` }}>
-          {renderList.map((item, index) => (
-            <li
-              key={index}
-              // key={item.id}
-              className={style.item}
-              style={{ height: itemheight + "px" }}
-              onClick={() => handler(item)}
-            >
-              <span>{item.id}: </span>
-              <span>{item.value}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className={style.container} ref={ref}>
+      <div className={style.slider} style={{ height: itemheight * items.length + "px" }} />
+      <ul className={style.items} style={{ transform: `translate3d(0, ${translateY}px ,0)` }}>
+        {renderList.map((item, index) => (
+          <li
+            key={index}
+            // key={item.id}
+            className={style.item}
+            style={{ height: itemheight + "px" }}
+            onClick={() => handler(item)}
+          >
+            <span>{item.id}: </span>
+            <span>{item.value}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

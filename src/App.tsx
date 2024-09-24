@@ -5,8 +5,7 @@ import Error from "@/components/error";
 import SetState from "@/components/setState";
 import UseEffect from "@/components/use-effect";
 // import CancelToken from "@/components/CancelToken";
-// import VirtualizedList from "@/components/virtualized";
-import VirtualizedList from "@/components/virtualized-react";
+import VirtualizedApp from "@/components/virtualized";
 import DumiApp from "@/components/dumi-app";
 import Counter from "@/components/counter";
 import Xss from "@/components/xss";
@@ -27,7 +26,8 @@ function App() {
       {/* <SetState /> */}
       {/* <UseEffect /> */}
       {/* <CancelToken /> */}
-      <VirtualizedList />
+      <VirtualizedApp />
+      {/* <VirtualizedListReact /> */}
       {/* <DumiApp /> */}
       {/* <Counter /> */}
       {/* <Xss /> */}
