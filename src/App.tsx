@@ -13,6 +13,7 @@ import Widget from "@/components/widget";
 import Event from "@/components/Event";
 import RandomTextComponent from "@/components/RandomTextComponent";
 import ScrollThrottleComponent from "@/components/ScrollThrottleComponent";
+import ReactPdf from "@/components/react-pdf";
 
 function App() {
   useEffect(() => {
@@ -26,7 +27,7 @@ function App() {
       {/* <SetState /> */}
       {/* <UseEffect /> */}
       {/* <CancelToken /> */}
-      <VirtualizedApp />
+      {/* <VirtualizedApp /> */}
       {/* <VirtualizedListReact /> */}
       {/* <DumiApp /> */}
       {/* <Counter /> */}
@@ -35,6 +36,7 @@ function App() {
       {/* <Event /> */}
       {/* <RandomTextComponent /> */}
       {/* <ScrollThrottleComponent /> */}
+      {/* <ReactPdf /> */}
     </div>
   );
 }
