@@ -1,10 +1,16 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-// import "./index.css";
 import App from "./App.jsx";
 
-createRoot(document.getElementById("root")).render(
-  // <StrictMode>
-  <App />
-  // </StrictMode>
-);
+let root = null;
+if (window.__POWERED_BY_WUJIE__) {
+  window.__WUJIE_MOUNT = () => {
+    root = createRoot(document.getElementById("root"));
+    root.render(<App />);
+  };
+  window.__WUJIE_UNMOUNT = () => {
+    root.unmount();
+  };
+} else {
+  root = createRoot(document.getElementById("root"));
+  root.render(<App />);
+}
