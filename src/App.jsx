@@ -1,4 +1,4 @@
-import Api from "./components/api";
+import Api from "@/components/api";
 
 function App() {
   return (
