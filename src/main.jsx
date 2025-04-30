@@ -1,9 +1,10 @@
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 
-let root = null;
 if (window.__POWERED_BY_WUJIE__) {
+  let root = null;
   window.__WUJIE_MOUNT = () => {
+    console.log("react mount");
     root = createRoot(document.getElementById("root"));
     root.render(<App />);
   };
@@ -11,6 +12,5 @@ if (window.__POWERED_BY_WUJIE__) {
     root.unmount();
   };
 } else {
-  root = createRoot(document.getElementById("root"));
-  root.render(<App />);
+  createRoot(document.getElementById("root")).render(<App />);
 }
